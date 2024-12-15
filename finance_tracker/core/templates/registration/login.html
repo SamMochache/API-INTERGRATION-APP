@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login to Your Account</h1>
+
+    <!-- Login Form -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Google Login Button -->
+    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+
+    <p>Don't have an account? <a href="{% url 'account_signup' %}">Sign Up</a></p>
+</body>
+</html>

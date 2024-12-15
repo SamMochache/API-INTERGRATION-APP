@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Finance Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dashboard-info">
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p>Here is your financial overview:</p>
+
+        <div class="overview">
+            <p><strong>Total Balance:</strong> ${{ total_balance }}</p>
+            <p><strong>Recent Transactions:</strong></p>
+            <ul>
+                {% for transaction in transactions %}
+                    <li>{{ transaction.date }} - ${{ transaction.amount }} - {{ transaction.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Finance Tracker. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'core/js/app.js' %}"></script>
+</body>
+</html>

@@ -65,14 +65,28 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'OAUTH_PKCE_ENABLED': True,
+        'EXCHANGE_TOKEN': True,
+    }
+}
+ACCOUNT_AUTHENTICATED_REMEMBER = True
+ACCOUNT_AUTHENTICATE_WITH_EMAIL = True
+ACCOUNT_SIGNUP_EMAIL_ENTERED = True
+ACCOUNT_EMAIL_REQUIRED = True
 
 ROOT_URLCONF = 'finance_tracker.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'core' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,6 +148,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'core/static',
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
