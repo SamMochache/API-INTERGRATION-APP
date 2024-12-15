@@ -9,6 +9,15 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+PLAID_CLIENT_ID = os.getenv('PLAID_CLIENT_ID')
+PLAID_SECRET = os.getenv('PLAID_SECRET')
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
 
 from pathlib import Path
 
